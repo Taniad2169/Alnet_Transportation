@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The WebSwan</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#194c7d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="The WebSwan">
+    <meta name="description" content="Your Path to a Stronger Online Presence">
+    <meta name="keywords" content="web design, digital marketing, website development">
+    
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* Your existing CSS styles remain exactly the same */
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(135deg, #194c7d 0%, #94e3cf 100%);
+            min-height: 100vh;
+            /* ADDED: Smooth scroll for entire page */
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to right, #abe9f7, #7fd4ca);
+            color: #1e4870;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #1e4870;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #1e4870;
+            font-weight: bold;
+        }
+        
+        /* NEW: Style for the new title */
+        .header-title-text {
+            font-size: 1.2em;
+            color: navy;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-top: 10px;
+        }
+
+        /* NEW: Ringing phone animation styles */
+        .ringing-phone {
+            font-size: 2.5em;
+            display: inline-block;
+            margin-left: 10px;
+            animation: ring 0.7s infinite;
+        }
+
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            10% { transform: rotate(10deg); }
+            20% { transform: rotate(-10deg); }
+            30% { transform: rotate(10deg); }
+            40% { transform: rotate(-10deg); }
+            50% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+
+        .header-emoji-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .header-emoji {
+            font-size: 2em;
+            position: absolute;
+            opacity: 0;
+        }
+
+        /* UPDATED: Sequential emoji animation - each emoji comes one after another */
+        .laptop-emoji {
+            top: 10%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 0s;
+        }
+
+        .lightbulb-emoji {
+            top: 25%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 3s;
+        }
+
+        .target-emoji {
+            top: 40%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 6s;
+        }
+
+        .bell-emoji {
+            top: 55%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 9s;
+        }
+
+        .key-emoji {
+            top: 70%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 12s;
+        }
+
+        .money-emoji {
+            top: 85%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 15s;
+        }
+        
+        .wifi-emoji {
+            top: 5%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 18s;
+        }
+        
+        .globe-emoji {
+            top: 90%;
+            left: -10%;
+            animation: flyInCloser 3s forwards;
+            animation-delay: 21s;
+        }
+
+        @keyframes flyInCloser {
+            0% {
+                transform: translateX(0) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(50vw) scale(2);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(120vw) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content Section Styles */
+        .content-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* UPDATED: YouTube Video Section Background */
+        #youtube-player .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: linear-gradient(to right, #83bbc9, white);
+            border-radius: 8px;
+        }
+
+        #youtube-player .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .video-thumbnail {
+            width: 120px;
+            height: 90px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .video-thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* NEW: Styles for the new demo button, bell animation, and confetti */
+        #demoBtn {
+            font-size: 40px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            display: block; /* To center the button */
+            margin: 20px auto; /* To center the button */
+        }
+
+        /* MODIFIED: Game button styling to new brand gradient and white font */
+        .game-button {
+            display: inline-block;
+            background: linear-gradient(to right, #84cdcf, #73b1c7); /* Changed from red */
+            color: white; /* Changed from red to white */
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 4px 15px rgba(132, 205, 207, 0.5); /* Updated shadow based on new color */
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .game-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(115, 177, 199, 0.6); /* Updated hover shadow */
+            background: linear-gradient(to right, #73b1c7, #84cdcf); /* Reverse gradient for hover */
+        }
+
+        /* MODIFIED: Book Appointment Button Styling to new brand gradient and white font */
+        .appointment-button {
+            display: inline-block;
+            background: linear-gradient(to right, #84cdcf, #73b1c7); /* Changed from green */
+            color: white; /* Set to white */
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 4px 15px rgba(132, 205, 207, 0.5); /* Updated shadow based on new color */
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .appointment-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(115, 177, 199, 0.6); /* Updated hover shadow */
+            background: linear-gradient(to right, #73b1c7, #84cdcf); /* Reverse gradient for hover */
+        }
+
+        /* MODIFIED: Visit Websites Button Styling to new font color */
+        .website-button {
+            display: inline-block;
+            background: linear-gradient(to right, #2cd0e6, #58e8d7);
+            color: #14395d; /* New font color: #14395d */
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 4px 15px rgba(44, 208, 230, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .website-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44, 208, 230, 0.4);
+            background: linear-gradient(to right, #1a9fb2, #47d6c5);
+        }
+
+        /* NEW: State Compliance Button Styling */
+        .state-compliance-button {
+            display: inline-block;
+            background-color: #14395d; /* Requested color */
+            color: white; /* White text for contrast */
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 20px auto;
+            box-shadow: 0 4px 15px rgba(20, 57, 93, 0.5);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .state-compliance-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(20, 57, 93, 0.7);
+            background-color: #1c4a7a; /* Slightly lighter on hover */
+        }
+
+        /* Bell animation (shake) */
+        .ringing {
+            animation: ring 0.3s linear infinite;
+        }
+
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(0); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0); }
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .button-title-text {
+            color: #1e4870;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* UPDATED: Quick Search Buttons - Changed color to #1e4870 */
+        .quick-search {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-search button {
+            padding: 8px 15px;
+            border: 1px solid #1e4870;
+            border-radius: 20px;
+            background: white;
+            color: #1e4870;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .quick-search button:hover {
+            background: #1e4870;
+            color: white;
+        }
+
+        /* NEW: States Compliance Button in Quick Search */
+        #statesComplianceBtn {
+            background-color: #14395d; /* Requested color */
+            color: snow; /* Snow white font */
+            border: 1px solid #14395d;
+            font-weight: bold;
+        }
+
+        #statesComplianceBtn:hover {
+            background-color: #1c4a7a;
+            color: snow;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2cd0e6;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+        }
+
+        /* Search Results Styling */
+        .search-results {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            background: white;
+            display: none;
+        }
+
+        .search-result {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-result:hover {
+            background-color: #f5f5f5;
+        }
+
+        .search-result img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        .search-result .video-info {
+            flex: 1;
+        }
+
+        .search-result .video-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .search-result .video-channel {
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        /* UPDATED: Demo Section Background */
+        .demo-section {
+            background: linear-gradient(to right, #d7faf2, white);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .appointment-cta {
+            background: linear-gradient(to right, #62b9cc, #cee7ed);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px auto;
+            max-width: 450px;
+            backdrop-filter: blur(5px);
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .appointment-cta ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0;
+        }
+
+        .appointment-cta li {
+            margin-bottom: 10px;
+        }
+
+        .lock-button {
+            display: inline-block;
+            font-size: 2.5em;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.3s ease;
+            margin-bottom: 10px;
+        }
+        
+        .lock-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* NEW: Survey button styling */
+        .survey-button {
+            display: inline-block;
+            font-size: 1.2em;
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: transform 0.3s ease;
+            color: #1e4870;
+            font-weight: bold;
+        }
+        
+        .survey-button:hover {
+            transform: scale(1.05);
+        }
+
+        .hand-pointer {
+            font-size: 1.5em;
+            display: block;
+            margin: 5px auto;
+            animation: bounce 2s infinite;
+        }
+
+        /* Modal for Links */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link-list li {
+            margin: 10px 0;
+        }
+
+        .link-list a {
+            color: #2cd0e6;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* NEW: State Compliance Modal Styling */
+        #statesComplianceModal .modal-content {
+            background-color: #14395d; /* Requested color */
+            color: snow; /* Snow white text for contrast */
+        }
+
+        #statesComplianceModal h2 {
+            color: snow;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #statesComplianceModal .link-list a {
+            color: snow;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        #statesComplianceModal .link-list a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #fafaf2;
+            margin-top: 30px;
+            background: linear-gradient(to right, #2cd0e6, #58e8d7);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer h3 {
+            color: navy;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: navy;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: navy;
+            opacity: 0.8;
+        }
+
+        .animated-emoji-container {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .animated-emoji {
+            display: inline-block;
+            font-size: 2em;
+            margin: 0 10px;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .animated-emoji:nth-child(1) { animation-delay: 0s; }
+        .animated-emoji:nth-child(2) { animation-delay: 0.2s; }
+        .animated-emoji:nth-child(3) { animation-delay: 0.4s; }
+        .animated-emoji:nth-child(4) { animation-delay: 0.6s; }
+        .animated-emoji:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        /* Media query for smaller devices */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .content-section {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 2.5em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .video-thumbnails {
+                gap: 10px;
+            }
+            .video-thumbnail {
+                width: 100px;
+                height: 75px;
+            }
+            footer h3 {
+                font-size: 1.2em;
+            }
+            .appointment-cta {
+                padding: 15px;
+                font-size: 1em;
+            }
+            .youtube-controls {
+                flex-direction: column;
+            }
+            .youtube-controls input[type="text"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .quick-search {
+                gap: 5px;
+            }
+            .quick-search button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .lock-button {
+                font-size: 1.2em;
+            }
+            .survey-button {
+                font-size: 1em;
+            }
+            .game-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .appointment-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .website-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .state-compliance-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-emoji-container">
+            <span class="header-emoji laptop-emoji">💻</span>
+            <span class="header-emoji lightbulb-emoji">💡</span>
+            <span class="header-emoji target-emoji">🎯</span>
+            <span class="header-emoji bell-emoji">🔔</span>
+            <span class="header-emoji key-emoji">🔑</span>
+            <span class="header-emoji money-emoji">💰</span>
+            <span class="header-emoji wifi-emoji">🛜</span>
+            <span class="header-emoji globe-emoji">🌐</span>
+        </div>
+        <h1>The WebSwan</h1>
+        <p>Your Path to a Stronger Online Presence</p>
+        <p class="header-title-text">
+            ready to take your business to the next level? give us a call or text at 
+            <a href="tel:+14158770687" style="color: navy; text-decoration: none;">(415)877-0687</a> 
+            <span class="ringing-phone" aria-label="Ringing Phone">☎</span>
+        </p>
+    </header>
+
+    <main class="container" id="brandhub">
+        <section id="youtube-player" class="content-section">
+            <h2>Our Videos</h2>
+            <p style="text-align: center; color: #1e4870; font-weight: bold;">Click on any video thumbnail below to load it in the player</p>
+            <div class="video-container">
+                <!-- REMOVED: autoplay=1 from the iframe src -->
+                <iframe id="video-iframe" src="https://www.youtube.com/embed/TaHQkh5Y0sU" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <p class="button-title-text">🔗 Explore Our Main Website 🔗</p>
+                <a href="https://www.thewebswan.com" target="_blank" class="website-button">
+                    🌐 Website </a>
+                <p style="color: #1e4870; font-weight: bold; margin-top: 10px;">The WebSwan</p>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <p class="button-title-text">📅 Ready to Get Started? Book Your Free Demo Now! 📅</p>
+                <a href="https://taniad2169.github.io/Webswan-Booking-FREE-Website-Demo/" target="_blank" class="appointment-button">
+                    📋 Book an Appointment
+                </a>
+                <p style="color: #1e4870; font-weight: bold; margin-top: 10px;">Click above to schedule your free website demo consultation!</p>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <p class="button-title-text">🎮 Play our fun game and win a prize! 🎮</p>
+                <a href="https://taniad2169.github.io/Web-Swan-Game/" target="_blank" class="game-button">
+                    🎯 Play Game & Win a Prize!
+                </a>
+                <p style="color: #1e4870; font-weight: bold; margin-top: 10px;">Click the button above to play our exciting game and have a chance to win!</p>
+            </div>
+
+            <!-- NEW: State Compliance Button Section -->
+            <div style="text-align: center; margin: 30px 0;">
+                <p class="button-title-text">⚖️ Free Website Compliance Audit ⚖️</p>
+                <a href="https://taniad2169.github.io/WS-Audit/" target="_blank" class="state-compliance-button">
+                    🛡️ Free Website Compliance Audit
+                </a>
+                <p style="color: #1e4870; font-weight: bold; margin-top: 10px;">Check if your website meets state + ADA compliance standards</p>
+            </div>
+
+            <p class="button-title-text">ready to take your business to the next level ? click the bell to unlock your free demo!</p>
+            <button id="demoBtn">🔔</button>
+            <canvas id="confetti-canvas"></canvas>
+            <audio id="bellSound" src="https://assets.mixkit.co/sfx/preview/mixkit-happy-bells-notification-937.mp3" preload="auto"></audio>
+
+            <div class="quick-search">
+                <button id="reviewsBtn">⭐ Reviews</button>
+                <button id="websiteGalleryBtn">🖼️ Website Gallery</button>
+                <button id="webApplicationsBtn">⚡ Web Applications</button>
+                <button id="interactiveHubBtn">🎯 Interactive Hub</button>
+                <button id="seoTipsBtn">🔍 SEO Tips</button>
+                <button id="webDesignVsTemplatesBtn">🎨 Custom vs Template</button>
+                <button id="reputationManagementBtn">⭐ Reputation Management</button>
+                <button id="campaignMarketingBtn">📢 Campaign Marketing</button>
+                <button id="websiteTipsBtn">🌐 Website Tips</button>
+                <button id="professionalsBtn">👨‍⚕️👩‍💼 Professionals</button>
+                <button id="myBioBtn">👤 My Bio</button>
+                <button id="restaurantBarberBtn">🍔✂️ Restaurant/Barber</button>
+                <button id="socialMediaBtn">📱 Social Media</button>
+                <!-- UPDATED: States Compliance Cookie & Accessibility Button moved to middle -->
+                <button id="statesComplianceBtn">⚖️ States Compliance Cookie & Accessibility</button>
+                <!-- UPDATED: Understand Your Website Performance Button -->
+                <button id="understandWebsiteBtn">🔍 Understand Your Website Performance</button>
+            </div>
+
+            <div class="video-thumbnails" id="video-thumbnails">
+                <div class="video-thumbnail" data-video-id="TaHQkh5Y0sU">
+                    <img src="https://img.youtube.com/vi/TaHQkh5Y0sU/mqdefault.jpg" alt="Video Thumbnail 1">
+                </div>
+                <div class="video-thumbnail" data-video-id="63wUeBevFwY">
+                    <img src="https://img.youtube.com/vi/63wUeBevFwY/mqdefault.jpg" alt="Video Thumbnail 2">
+                </div>
+                <div class="video-thumbnail" data-video-id="YeD6xzy6TDQ">
+                    <img src="https://img.youtube.com/vi/YeD6xzy6TDQ/mqdefault.jpg" alt="Video Thumbnail 3">
+                </div>
+                <div class="video-thumbnail" data-video-id="AFhPcpGo3bQ">
+                    <img src="https://img.youtube.com/vi/AFhPcpGo3bQ/mqdefault.jpg" alt="Video Thumbnail 4">
+                </div>
+                <div class="video-thumbnail" data-video-id="_S4m8bY5JWM">
+                    <img src="https://img.youtube.com/vi/_S4m8bY5JWM/mqdefault.jpg" alt="Video Thumbnail 5">
+                </div>
+                <div class="video-thumbnail" data-video-id="5YvMyeFZGZA">
+                    <img src="https://img.youtube.com/vi/5YvMyeFZGZA/mqdefault.jpg" alt="Video Thumbnail 6">
+                </div>
+                <div class="video-thumbnail" data-video-id="OrtLBd7xFac">
+                    <img src="https://img.youtube.com/vi/OrtLBd7xFac/mqdefault.jpg" alt="Custom Web Design vs Template Websites">
+                </div>
+                <div class="video-thumbnail" data-video-id="UNFkK0XC6dA">
+                    <img src="https://img.youtube.com/vi/UNFkK0XC6dA/mqdefault.jpg" alt="Campaign Marketing">
+                </div>
+                <div class="video-thumbnail" data-video-id="7UPFrt9z3_U">
+                    <img src="https://img.youtube.com/vi/7UPFrt9z3_U/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="AhrG8jgQn3E">
+                    <img src="https://img.youtube.com/vi/AhrG8jgQn3E/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="fIGlhDOziow">
+                    <img src="https://img.youtube.com/vi/fIGlhDOziow/mqdefault.jpg" alt="My Bio">
+                </div>
+                <div class="video-thumbnail" data-video-id="wRWmozD3wY4">
+                    <img src="https://img.youtube.com/vi/wRWmozD3wY4/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="hbgLZLsLTpg">
+                    <img src="https://img.youtube.com/vi/hbgLZLsLTpg/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="zwuc3cc9cMw">
+                    <img src="https://img.youtube.com/vi/zwuc3cc9cMw/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="nKuJo4ISGX4">
+                    <img src="https://img.youtube.com/vi/nKuJo4ISGX4/mqdefault.jpg" alt="Campaign Marketing">
+                </div>
+                <div class="video-thumbnail" data-video-id="eX1Q_5PMtp4">
+                    <img src="https://img.youtube.com/vi/eX1Q_5PMtp4/mqdefault.jpg" alt="Campaign Marketing">
+                </div>
+                <div class="video-thumbnail" data-video-id="gyOnq1_hWdE">
+                    <img src="https://img.youtube.com/vi/gyOnq1_hWdE/mqdefault.jpg" alt="Professionals">
+                </div>
+                <div class="video-thumbnail" data-video-id="9l8cmDEQz1k">
+                    <img src="https://img.youtube.com/vi/9l8cmDEQz1k/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="YeD6xzy6TDQ">
+                    <img src="https://img.youtube.com/vi/YeD6xzy6TDQ/mqdefault.jpg" alt="Professionals">
+                </div>
+                <div class="video-thumbnail" data-video-id="g0PYayzh49k">
+                    <img src="https://img.youtube.com/vi/g0PYayzh49k/mqdefault.jpg" alt="Campaign Marketing">
+                </div>
+                <div class="video-thumbnail" data-video-id="gqLRG8LjCjE">
+                    <img src="https://img.youtube.com/vi/gqLRG8LjCjE/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="sobmvBObvb8">
+                    <img src="https://img.youtube.com/vi/sobmvBObvb8/mqdefault.jpg" alt="My Bio">
+                </div>
+                <div class="video-thumbnail" data-video-id="Mot2WC3782Q">
+                    <img src="https://img.youtube.com/vi/Mot2WC3782Q/mqdefault.jpg" alt="Website Tips">
+                </div>
+                <div class="video-thumbnail" data-video-id="Xwd9ORiyz8c">
+                    <img src="https://img.youtube.com/vi/Xwd9ORiyz8c/mqdefault.jpg" alt="Restaurant/Barber">
+                </div>
+                <div class="video-thumbnail" data-video-id="0aGXbjSZ8KA">
+                    <img src="https://img.youtube.com/vi/0aGXbjSZ8KA/mqdefault.jpg" alt="Restaurant/Barber">
+                </div>
+                <!-- UPDATED: Replaced the video thumbnail with the correct video ID -->
+                <div class="video-thumbnail" data-video-id="9ZoqCUo9NPg">
+                    <img src="https://img.youtube.com/vi/9ZoqCUo9NPg/mqdefault.jpg" alt="States Compliance Cookie & Accessibility">
+                </div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <div class="appointment-cta">
+                <h3>Get Your Free Web Demo — No Cost, No Obligation</h3>
+                <p>Experience your site before you commit. If you don't love it, you don't pay a dime.</p>
+                <ul>
+                    <li>Custom design tailored to your brand — with a free, no-obligation demo to prove it.</li>
+                    <li>See your vision come to life, risk-free. Free demo. No cost. No pressure just results.</li>
+                    <li>Claim Your Free Demo Today</li>
+                    <li>See Your Business Online — Risk Free</li>
+                </ul>
+                <span class="hand-pointer">👇</span>
+                <a href="https://taniad2169.github.io/WebSwan-Free-Demo-App/" target="_blank" class="lock-button">
+                    🔐 click the lock to unlock your free demo!
+                </a>
+                <br>
+                <a href="https://taniad2169.github.io/WebSwan-Market-Research-Online-/" target="_blank" class="survey-button">
+                    🎯 click here to participate in our small survey to better understand your web design and digital marketing needs
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODALS FOR QUICK SEARCH BUTTONS -->
+    <!-- Reviews Modal -->
+    <div id="reviewsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>⭐ Reviews</h2>
+            <ul class="link-list">
+                <li><a href="https://www.yelp.com/biz/the-webswan-emeryville" target="_blank">Yelp Review</a></li>
+                <li><a href="https://www.thewebswan.com/about-us" target="_blank">Click here to view my clients reviews</a></li>
+                <li><a href="https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s107344328098667087693!2s0xa2370697717bde97:0xe12746ae08472f10?ved=1t:31295&ictx=111" target="_blank">Click to view my Google review</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Website Gallery Modal -->
+    <div id="websiteGalleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🖼️ Website Gallery</h2>
+            <ul class="link-list">
+                <li><a href="https://www.thewebswan.com/portfolio" target="_blank">Website Portfolio Showcase</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Web Applications Modal -->
+    <div id="webApplicationsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>⚡ Web Applications</h2>
+            <ul class="link-list">
+                <li><a href="https://taniad2169.github.io/Express_online_application/" target="_blank">Express Online Application</a></li>
+                <li><a href="https://taniad2169.github.io/WebSwan-Free-Demo-App/" target="_blank">WebSwan Free Demo App</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Interactive Hub Modal -->
+    <div id="interactiveHubModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🎯 Interactive Hub</h2>
+            <ul class="link-list">
+                <li><a href="https://taniad2169.github.io/Express-Capital-Automation/" target="_blank">Express Capital Automation</a></li>
+                <li><a href="https://taniad2169.github.io/Ek-s-gallery/" target="_blank">EK's Gallery</a></li>
+                <li><a href="https://taniad2169.github.io/WebSwan-Brand-Hub/" target="_blank">WebSwan Brand Hub</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SEO Tips Modal -->
+    <div id="seoTipsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🔍 SEO Tips</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/63wUeBevFwY?si=T-IJRVvp_aa_vEdK" target="_blank">SEO Tips Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Web Design vs Templates Modal -->
+    <div id="webDesignVsTemplatesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🎨 Custom Web Design vs Template Websites</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/OrtLBd7xFac" target="_blank">Custom vs Template Websites</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Reputation Management Modal -->
+    <div id="reputationManagementModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>⭐ Reputation Management</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/5YvMyeFZGZA?si=tT6oyD6G2hPZMgHJ" target="_blank">Reputation Management Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Campaign Marketing Modal -->
+    <div id="campaignMarketingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>📢 Campaign Marketing</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/13fxhjfi6zg?si=Vz05KsKkoL3M54JU" target="_blank">Campaign Marketing Video 1</a></li>
+                <li><a href="https://youtu.be/7UPFrt9z3_U?si=be2e25C2uG3IqoAt" target="_blank">Campaign Marketing Video 2</a></li>
+                <li><a href="https://youtu.be/-6s50yURcl0?si=WaqmXqaw6lqTZYJI" target="_blank">Campaign Marketing Video 3</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Website Tips Modal -->
+    <div id="websiteTipsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🌐 Website Tips</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/nbaxUG3aCpc?si=hJ4iMAD7KAz0_jOx" target="_blank">Powerful Online Presence for Your Business</a></li>
+                <li><a href="https://youtu.be/nKuJo4ISGX4?si=y66in7xhgQGADNGg" target="_blank">Business Success with Ad Campaign</a></li>
+                <li><a href="https://youtu.be/5YakqrX2STc?si=cIEYANIuRbUDqiSw" target="_blank">Strategic Business Planning</a></li>
+                <li><a href="https://youtu.be/jF_t8EinK7Y?si=Lzgfq-CxscROOHEX" target="_blank">Custom Branding to Stand Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Professionals Modal -->
+    <div id="professionalsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>👨‍⚕️👩‍💼 Professionals</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/YeD6xzy6TDQ" target="_blank">Websites for Professionals</a></li>
+                <li><a href="https://youtu.be/g0PYayzh49k" target="_blank">Professional Branding</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- My Bio Modal -->
+    <div id="myBioModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>👤 My Bio</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/TaHQkh5Y0sU?si=xWZDnKPS2RfrqEHr" target="_blank">My Bio Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Restaurant/Barber Modal -->
+    <div id="restaurantBarberModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🍔✂️ Restaurant/Barber</h2>
+            <ul class="link-list">
+                <li><a href="https://youtu.be/Xwd9ORiyz8c" target="_blank">Websites for Restaurants</a></li>
+                <li><a href="https://youtu.be/0aGXbjSZ8KA" target="_blank">Websites for Barbers</a></li>
+                <li><a href="https://youtu.be/0hRfS55bpRo?si=RzC1_595Vul4jeXb" target="_blank">Website for Restaurant Spanish Version</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Social Media Modal -->
+    <div id="socialMediaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>📱 Social Media</h2>
+            <ul class="link-list">
+                <li><a href="https://www.facebook.com/profile.php?id=61564322427695" target="_blank">Facebook</a></li>
+                <li><a href="https://www.linkedin.com/in/tania-domingue-882a68282/" target="_blank">LinkedIn</a></li>
+                <li><a href="https://www.instagram.com/motivationalll_speaker/" target="_blank">Instagram</a></li>
+                <!-- UPDATED: TikTok link -->
+                <li><a href="https://www.tiktok.com/@taniadomngue?lang=en" target="_blank">TikTok</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- NEW: States Compliance Cookie & Accessibility Modal -->
+    <div id="statesComplianceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>⚖️ States Compliance Cookie & Accessibility</h2>
+            <ul class="link-list">
+                <li><a href="https://taniad2169.github.io/WS-Audit/" target="_blank">Free Website Compliance Audit - Check if your website meets state + ADA compliance standards</a></li>
+                <li><a href="#" data-video-id="9ZoqCUo9NPg">Click here to watch the States Compliance Cookie & Accessibility video</a></li>
+                <!-- NEW: Added the YouTube link you provided -->
+                <li><a href="https://youtu.be/RgyEYFjKE_I?si=lhFip2IWJNfrglIX" target="_blank">States Compliance Cookie & Accessibility Video</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- UPDATED: Understand Your Website Performance Modal with both links - Web Analysis replaced with Slot Machine -->
+    <div id="understandWebsiteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>🔍 Understand Your Website Performance</h2>
+            <ul class="link-list">
+                <li><a href="https://taniad2169.github.io/WebSwan-Analysis-Overview/" target="_blank">Website Analysis Overview</a></li>
+                <li><a href="https://taniad2169.github.io/WS_slotmachine/" target="_blank">The WebSwan slot machine click to play</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+            <p>Phone: <a href="tel:+14158770687" style="color: navy; text-decoration: none;">(415)877-0687</a></p>
+            <p>Email: <a href="mailto:thewebswan@gmail.com" style="color: navy; text-decoration: none;">thewebswan@gmail.com</a></p>
+            <p>Website: <a href="https://www.thewebswan.com" target="_blank" style="color: navy; text-decoration: none;">www.thewebswan.com</a></p>
+            <p class="copyright">© 2023 The WebSwan. All rights reserved.</p>
+        </div>
+        <div class="animated-emoji-container">
+            <span class="animated-emoji">💻</span>
+            <span class="animated-emoji">💡</span>
+            <span class="animated-emoji">🎯</span>
+            <span class="animated-emoji">🔔</span>
+            <span class="animated-emoji">🔑</span>
+        </div>
+    </footer>
+
+    <script>
+        // Video thumbnail click functionality - FIXED with smooth scroll
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoId = this.getAttribute('data-video-id');
+                const iframe = document.getElementById('video-iframe');
+                iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                
+                // Smooth scroll to the video section
+                const youtubeSection = document.getElementById('youtube-player');
+                if (youtubeSection) {
+                    youtubeSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Bell button animation and confetti - FIXED to link to application
+        const demoBtn = document.getElementById('demoBtn');
+        const bellSound = document.getElementById('bellSound');
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const ctx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        demoBtn.addEventListener('click', function() {
+            // Add ringing animation
+            this.classList.add('ringing');
+            
+            // Play bell sound
+            bellSound.play();
+            
+            // Launch confetti
+            launchConfetti();
+            
+            // Remove animation after 1 second
+            setTimeout(() => {
+                this.classList.remove('ringing');
+            }, 1000);
+            
+            // Redirect to application after 2 seconds (NOT calendar)
+            setTimeout(() => {
+                window.open('https://taniad2169.github.io/WebSwan-Free-Demo-App/', '_blank');
+            }, 2000);
+        });
+
+        // Confetti function
+        function launchConfetti() {
+            const confettiCount = 200;
+            const confettiColors = ['#2cd0e6', '#58e8d7', '#ffd166', '#ff9a8b', '#c8a2ff'];
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * confettiCanvas.width;
+                    const y = -20;
+                    const size = Math.random() * 10 + 5;
+                    const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                    
+                    drawConfetti(x, y, size, color);
+                }, i * 10);
+            }
+        }
+
+        function drawConfetti(x, y, size, color) {
+            let velocityY = Math.random() * 5 + 2;
+            let velocityX = (Math.random() - 0.5) * 4;
+            let rotation = 0;
+            let rotationSpeed = (Math.random() - 0.5) * 0.2;
+            
+            function animate() {
+                ctx.clearRect(x - size/2 - 2, y - size/2 - 2, size + 4, size + 4);
+                
+                y += velocityY;
+                x += velocityX;
+                velocityY += 0.1; // gravity
+                rotation += rotationSpeed;
+                
+                if (y < confettiCanvas.height) {
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(rotation);
+                    ctx.fillStyle = color;
+                    ctx.fillRect(-size/2, -size/2, size, size);
+                    ctx.restore();
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            animate();
+        }
+
+        // Modal functionality
+        const modals = {
+            reviewsBtn: 'reviewsModal',
+            websiteGalleryBtn: 'websiteGalleryModal',
+            webApplicationsBtn: 'webApplicationsModal',
+            interactiveHubBtn: 'interactiveHubModal',
+            seoTipsBtn: 'seoTipsModal',
+            webDesignVsTemplatesBtn: 'webDesignVsTemplatesModal',
+            reputationManagementBtn: 'reputationManagementModal',
+            campaignMarketingBtn: 'campaignMarketingModal',
+            websiteTipsBtn: 'websiteTipsModal',
+            professionalsBtn: 'professionalsModal',
+            myBioBtn: 'myBioModal',
+            restaurantBarberBtn: 'restaurantBarberModal',
+            socialMediaBtn: 'socialMediaModal',
+            understandWebsiteBtn: 'understandWebsiteModal',
+            statesComplianceBtn: 'statesComplianceModal'
+        };
+
+        // Add event listeners for modal buttons
+        Object.keys(modals).forEach(buttonId => {
+            document.getElementById(buttonId).addEventListener('click', function() {
+                document.getElementById(modals[buttonId]).style.display = 'block';
+            });
+        });
+
+        // Close modals when clicking the X
+        document.querySelectorAll('.close-modal').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Resize confetti canvas when window resizes
+        window.addEventListener('resize', function() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        });
+
+        // Enhanced smooth scroll functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle page load with hash
+            if (window.location.hash === '#brandhub') {
+                setTimeout(() => {
+                    const brandhubElement = document.getElementById('brandhub');
+                    if (brandhubElement) {
+                        brandhubElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 100);
+            }
+        });
+
+        // NEW: Handle video links in modals
+        document.querySelectorAll('.link-list a[data-video-id]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const videoId = this.getAttribute('data-video-id');
+                const iframe = document.getElementById('video-iframe');
+                iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                
+                // Close the modal
+                this.closest('.modal').style.display = 'none';
+                
+                // Smooth scroll to the video section
+                const youtubeSection = document.getElementById('youtube-player');
+                if (youtubeSection) {
+                    youtubeSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
