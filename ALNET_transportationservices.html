@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alnet Transportation Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #bd2c0f;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .business-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background: #1a2a6c;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            flex: 1;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .company-tagline {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .dot-number {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+        
+        .truck-container {
+            width: 200px;
+            height: 140px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tow-truck {
+            width: 180px;
+            height: 120px;
+            position: relative;
+        }
+        
+        .truck-body {
+            width: 120px;
+            height: 50px;
+            background: #ff6b35;
+            border-radius: 10px 5px 5px 10px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+        }
+        
+        .truck-cab {
+            width: 60px;
+            height: 50px;
+            background: #ff6b35;
+            border-radius: 10px 5px 5px 10px;
+            position: absolute;
+            top: 35px;
+            left: 120px;
+        }
+        
+        .truck-window {
+            width: 35px;
+            height: 25px;
+            background: #a3d9ff;
+            border-radius: 5px;
+            position: absolute;
+            top: 42px;
+            left: 128px;
+        }
+        
+        .wheel {
+            width: 28px;
+            height: 28px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .wheel-1 {
+            top: 80px;
+            left: 25px;
+        }
+        
+        .wheel-2 {
+            top: 80px;
+            left: 90px;
+        }
+        
+        .wheel-3 {
+            top: 80px;
+            left: 140px;
+        }
+        
+        .wheel-inner {
+            width: 14px;
+            height: 14px;
+            background: #ccc;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .tow-arm {
+            width: 40px;
+            height: 15px;
+            background: #ff6b35;
+            position: absolute;
+            top: 55px;
+            left: 160px;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .hook {
+            width: 20px;
+            height: 25px;
+            background: #ff6b35;
+            position: absolute;
+            top: 70px;
+            left: 195px;
+            border-radius: 10px 10px 0 0;
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+        }
+        
+        .hook-chain {
+            width: 5px;
+            height: 25px;
+            background: #333;
+            position: absolute;
+            top: 55px;
+            left: 195px;
+        }
+        
+        .car {
+            width: 80px;
+            height: 40px;
+            background: #ff0000;
+            border-radius: 8px 8px 5px 5px;
+            position: absolute;
+            top: 50px;
+            left: 210px;
+        }
+        
+        .car-window {
+            width: 45px;
+            height: 18px;
+            background: #a3d9ff;
+            border-radius: 5px;
+            position: absolute;
+            top: 55px;
+            left: 220px;
+        }
+        
+        .car-wheel {
+            width: 20px;
+            height: 20px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .car-wheel-1 {
+            top: 80px;
+            left: 215px;
+        }
+        
+        .car-wheel-2 {
+            top: 80px;
+            left: 250px;
+        }
+        
+        .car-wheel-inner {
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .card-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .contact-info {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-name {
+            font-size: 28px;
+            color: #1a2a6c;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .contact-title {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .contact-item i {
+            width: 30px;
+            color: #1a2a6c;
+            font-size: 18px;
+        }
+        
+        .phone-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a2a6c;
+            margin: 10px 0 20px 0;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .phone-number:hover {
+            color: #2c3e50;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        
+        .btn-call {
+            background: #1a2a6c;
+            color: white;
+        }
+        
+        .btn-text {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-call:hover {
+            background: #2c3e50;
+        }
+        
+        .btn-text:hover {
+            background: #218838;
+        }
+        
+        .card-footer {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 200px;
+        }
+        
+        .contact-icon {
+            font-size: 40px;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        .contact-method h3 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        .contact-method p {
+            color: #2c3e50;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .truck-container {
+                margin-bottom: 15px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+        
+        .info-note {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #2c3e50;
+            max-width: 500px;
+        }
+        
+        /* Animated Car Emoji */
+        .animated-car {
+            font-size: 40px;
+            position: absolute;
+            animation: drive 15s linear infinite;
+            z-index: 1;
+        }
+        
+        .car-1 {
+            top: 20px;
+            animation-delay: 0s;
+        }
+        
+        .car-2 {
+            top: 80px;
+            animation-delay: 3s;
+        }
+        
+        .car-3 {
+            top: 140px;
+            animation-delay: 6s;
+        }
+        
+        .car-4 {
+            top: 200px;
+            animation-delay: 9s;
+        }
+        
+        .car-5 {
+            top: 260px;
+            animation-delay: 12s;
+        }
+        
+        @keyframes drive {
+            0% {
+                left: -50px;
+                transform: scaleX(1);
+            }
+            49% {
+                transform: scaleX(1);
+            }
+            50% {
+                left: 100%;
+                transform: scaleX(-1);
+            }
+            99% {
+                transform: scaleX(-1);
+            }
+            100% {
+                left: -50px;
+                transform: scaleX(1);
+            }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal h2 {
+            color: #1a2a6c;
+            margin-bottom: 20px;
+        }
+        
+        .modal p {
+            margin-bottom: 25px;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .modal-continue {
+            background: #28a745;
+            color: white;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Car Emojis in Background -->
+    <div class="animated-car car-1">🚗</div>
+    <div class="animated-car car-2">🚙</div>
+    <div class="animated-car car-3">🏎️</div>
+    <div class="animated-car car-4">🚓</div>
+    <div class="animated-car car-5">🚘</div>
+    
+    <!-- Text Message Modal -->
+    <div id="textModal" class="modal">
+        <div class="modal-content">
+            <h2>Send a Text Message</h2>
+            <p>Click "Continue" to open your messaging app and text David at Alnet Transportation Services.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-close" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn modal-continue" onclick="sendText()">Continue</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="business-card">
+        <div class="card-header">
+            <div class="truck-container">
+                <div class="tow-truck">
+                    <div class="truck-body"></div>
+                    <div class="truck-cab"></div>
+                    <div class="truck-window"></div>
+                    <div class="wheel wheel-1">
+                        <div class="wheel-inner"></div>
+                    </div>
+                    <div class="wheel wheel-2">
+                        <div class="wheel-inner"></div>
+                    </div>
+                    <div class="wheel wheel-3">
+                        <div class="wheel-inner"></div>
+                    </div>
+                    <div class="tow-arm"></div>
+                    <div class="hook-chain"></div>
+                    <div class="hook"></div>
+                    <div class="car">
+                        <div class="car-window"></div>
+                        <div class="car-wheel car-wheel-1">
+                            <div class="car-wheel-inner"></div>
+                        </div>
+                        <div class="car-wheel car-wheel-2">
+                            <div class="car-wheel-inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-content">
+                <div class="company-name">Alnet Transportation Services</div>
+                <div class="company-tagline">Professional Transport Solutions</div>
+                <div class="dot-number">DOT# 3078360</div>
+            </div>
+        </div>
+        
+        <div class="card-content">
+            <div class="contact-info">
+                <div class="contact-name">David</div>
+                <div class="contact-title">CEO</div>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <div>Direct Line</div>
+                            <a href="tel:4079731910" class="phone-number">(407) 973-1910</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <div>Alnet Transportation Services</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="tel:4079731910" class="btn btn-call">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <button class="btn btn-text" onclick="openTextModal()">
+                        <i class="fas fa-comment"></i> Send Text
+                    </button>
+                </div>
+            </div>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-volume"></i>
+                    </div>
+                    <h3>Call Directly</h3>
+                    <p>Tap the "Call Now" button to speak directly with David, CEO of Alnet Transportation</p>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fas fa-sms"></i>
+                    </div>
+                    <h3>Send a Text</h3>
+                    <p>Tap "Send Text" to open your messaging app with David's number already entered</p>
+                </div>
+            </div>
+            
+            <div class="info-note">
+                <p><strong>Note:</strong> On mobile devices, the call and text buttons will open your phone's dialer and messaging apps automatically.</p>
+            </div>
+        </div>
+        
+        <div class="card-footer">
+            <p>Professional Transportation Services | DOT# 3078360</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+        
+        // Add animation to the tow truck
+        const towTruck = document.querySelector('.tow-truck');
+        let position = 0;
+        let direction = 1;
+        
+        function animateTruck() {
+            position += direction * 0.5;
+            
+            if (position > 10) {
+                direction = -1;
+            } else if (position < -10) {
+                direction = 1;
+            }
+            
+            towTruck.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(animateTruck);
+        }
+        
+        // Start animation after a short delay
+        setTimeout(() => {
+            animateTruck();
+        }, 1000);
+        
+        // Text Message Modal Functions
+        function openTextModal() {
+            document.getElementById('textModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('textModal').style.display = 'none';
+        }
+        
+        function sendText() {
+            // Close the modal
+            closeModal();
+            
+            // Open the SMS app
+            window.location.href = 'sms:4079731910';
+        }
+        
+        // Close modal if clicked outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('textModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
